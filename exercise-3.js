@@ -26,3 +26,49 @@ const dominos = {
   zipcode: 54321,
   acceptsReservations: true,
 };
+
+//2
+
+function printPizzaPlace(objectName) {
+  // let answer = [];
+  // for (const key in objectName) {
+  //   if (typeof objectName.key != Object) {
+  //     answer.push(key + ":" + objectName[key]);
+  //     console.log(key + typeof objectName.key);
+  //   } else {
+  //     answer.push(key);
+  //     answer.push(printPizzaPlace(objectName.key));
+  //   }
+  // }
+  // return answer;
+  return Object.entries(objectName);
+}
+
+console.log(printPizzaPlace(dominos));
+
+//3
+
+function toppingsPriceRange(objectName) {
+  let lowest = 90000000; //just in case they have Platinum as a topping :)
+  let highest = 0;
+  for (const key in objectName.pizzaToppings) {
+    lowest = Math.min(lowest, objectName.pizzaToppings[key]);
+    highest = Math.max(highest, objectName.pizzaToppings[key]);
+  }
+  return [`lowest: ${lowest}`, `highest: ${highest}`];
+}
+console.log(toppingsPriceRange(dominos));
+
+//4
+
+function calculateAverageRating(objectName) {
+  let total = 0;
+  let numReviews = 0;
+  for (const key in objectName.starReviews) {
+    total += objectName.starReviews[key];
+    numReviews++;
+  }
+  return (total / numReviews).toFixed(1);
+}
+
+console.log(calculateAverageRating(dominos));
